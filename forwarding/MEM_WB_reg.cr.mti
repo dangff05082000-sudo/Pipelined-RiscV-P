@@ -1,0 +1,8 @@
+F:/Simulates/milestone3/00_src/MEM_WB_reg.sv {1 {vlog -work work -sv -stats=none F:/Simulates/milestone3/00_src/MEM_WB_reg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module MEM_WB_reg
+
+Top level modules:
+	MEM_WB_reg
+
+} {} {}}

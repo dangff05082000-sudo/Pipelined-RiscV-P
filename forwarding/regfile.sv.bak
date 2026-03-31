@@ -1,0 +1,42 @@
+module regfile(
+	input 	logic 		i_clk,
+	input 	logic 		i_reset, 
+	input 	logic 		i_rd_wren,
+	input 	logic 	[4:0] 	i_rs1_addr,
+	input 	logic 	[4:0] 	i_rs2_addr,
+	input 	logic 	[4:0] 	i_rd_addr,
+	input 	logic 	[31:0] 	i_rd_data,
+
+	output 	logic 	[31:0] 	o_rs1_data,
+	output 	logic 	[31:0] 	o_rs2_data
+);
+	logic [31:0] regfile [31:0];
+	
+	initial begin
+	for(int i=0; i<32; i=i+1) begin
+	regfile[i] = 32'b0;
+	end
+	end
+
+	always @(posedge i_clk or negedge i_reset)
+	begin
+	if(!i_reset) 
+	begin
+	for(int i=0;i<=31;i++)
+	begin
+	regfile[i] <= 32'b0;
+	end
+	end
+	else
+	begin
+	if(i_rd_wren && (i_rd_addr != 5'b0)) 
+	begin
+	regfile[i_rd_addr] <= i_rd_data;
+	end
+	end
+	end
+
+	assign o_rs1_data = (i_rs1_addr == 5'b0) ? 32'b0 : regfile[i_rs1_addr];
+	assign o_rs2_data = (i_rs2_addr == 5'b0) ? 32'b0 : regfile[i_rs2_addr];
+
+endmodule
